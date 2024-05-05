@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { FlatList, StyleSheet, Text, View, ScrollView } from 'react-native';
 import React, {useState} from 'react'
 import Header from './components/header';
+import TodoItem from './components/todoItem';
 export default function App() {
 
   const [todos, setTodos] = useState([
@@ -9,6 +10,12 @@ export default function App() {
     {text:'create app', key:2},
     {text:'play gts2', key:3},
   ])
+
+  const itemHandler=(key)=>{
+    setTodos((prevTodos)=>{
+      return prevTodos.filter(todo => todo.key != key)
+    })
+  }
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -25,7 +32,7 @@ export default function App() {
            renderItem={({ item })=>{
             return(
               <Text style={styles.item}>
-                {item.key}:  {item.text}
+                <TodoItem item={item} itemHandler={itemHandler}/>
               </Text>
             )
            }}
@@ -70,5 +77,6 @@ const styles = StyleSheet.create({
     textAlign:'center',
     paddingVertical:15,
     borderRadius:8,
+    borderColor:'#bbb',
   }
 });

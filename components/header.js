@@ -13,7 +13,7 @@ export default function Header(){
 }
 const styles = StyleSheet.create({
   header: {
-    backgroundColor:'blue',
+    backgroundColor:'darkblue',
     paddingVertical:70,
   },
   title:{
